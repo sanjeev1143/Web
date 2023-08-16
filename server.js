@@ -2,8 +2,19 @@ const express = require('express')
 const app = express();
 const bodyParser = require('body-parser')
 const socket = require('socket.io')
+const cors = require('cors')
 
 
+var corsOptions = {
+    origin: '',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
+
+app.use(cors({
+  origin: "http://127.0.0.1:5500/",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type"],
+}))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false })
 )
@@ -19,7 +30,17 @@ const server = app.listen(8000,()=>{
 
 //socket setup
 
-let io = socket(server);
+
+const io = socket(server, {
+    cors: {
+      origin: "https://example.com",
+      methods: ["GET", "POST"],
+      allowedHeaders: ["my-custom-header"],
+      credentials: true
+    }
+  });
+
+
 
 
 io.on('connection',function(socket){
@@ -28,6 +49,9 @@ io.on('connection',function(socket){
 
     socket.on('chat',function(data){
         io.sockets.emit('chat',data);
+    })
+    socket.on('typing',function(data){
+      socket.broadcast.emit('typing',data);
     })
 })
 

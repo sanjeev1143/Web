@@ -2,4 +2,57 @@ body{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+
+}
+#chat-window{
+    border-radius: 15px;
+    background-color: rgb(222, 219, 219);
+    width: 350px;
+    height: 600px;
+    padding-left: 10px;
+    border: 1px solid black;
+    overflow-y: scroll;
+}
+button{
+    width: 95%;
+    margin-top: 10px;
+    height: 30px;
+    border-radius: 8px;
+    background: black;
+    color: white;
+    font-size: 12px;
+    font: 1em sans-serif;
+    cursor: pointer;
+}
+
+#screen{
+    margin-top: 30px;
+    border-radius: 15px;
+    height: fit-content;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+    align-items: center;
+}
+
+#output{
+    width: 200px;
+    min-height: 20px;
+    
+    
+   
+}
+
+input{
+    outline: none;
+    padding: 3px;
+    margin-top: 3px;
+    width: 95%;
+    height: 30px;
+    border: none;
 }
